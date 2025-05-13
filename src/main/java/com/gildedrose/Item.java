@@ -12,8 +12,8 @@ public class Item {
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
-        setSellIn(sellIn);
-        setQuality(quality);
+        this.sellIn = sellIn;
+        this.quality = quality;
     }
 
     public void setQuality(int quality) {
