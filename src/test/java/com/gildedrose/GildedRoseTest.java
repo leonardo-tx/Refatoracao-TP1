@@ -17,7 +17,7 @@ class GildedRoseTest {
             new Item("Item 2", 6, 9),
             new Item("Item 3", 0, 19),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -35,7 +35,7 @@ class GildedRoseTest {
             new Item("Item 2", -1, 8),
             new Item("Item 3", -2, 18),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -67,7 +67,7 @@ class GildedRoseTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 7, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 7, 50),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -83,7 +83,7 @@ class GildedRoseTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
             new Item("Backstage passes to a TAFKAL80ETC concert", -2, 0),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -101,7 +101,7 @@ class GildedRoseTest {
             new Item("Aged Brie", 6, 50),
             new Item("Aged Brie", 0, 11),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -119,7 +119,7 @@ class GildedRoseTest {
             new Item("Aged Brie", -2, 50),
             new Item("Aged Brie", -3, 37),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -137,7 +137,7 @@ class GildedRoseTest {
             new Item("Sulfuras, Hand of Ragnaros", 12, 42),
             new Item("Sulfuras, Hand of Ragnaros", -5, 34),
         };
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
         app.updateQuality();
 
         assertItems(expectedItems, items);
@@ -148,9 +148,18 @@ class GildedRoseTest {
             Item item = items[i];
             Item expectedItem = expectedItems[i];
 
-            assertEquals(expectedItem.name, item.name, "Item at index " + i + " should have the name as " + expectedItem.name);
-            assertEquals(expectedItem.sellIn, item.sellIn, "Item at index " + i + " should have the sellIn as " + expectedItem.sellIn);
-            assertEquals(expectedItem.quality, item.quality, "Item at index " + i + " should have the quality as " + expectedItem.quality);
+            assertEquals(
+                expectedItem.getName(), item.getName(),
+                "Item at index " + i + " should have the name as " + expectedItem.getName()
+            );
+            assertEquals(
+                expectedItem.getSellIn(), item.getSellIn(),
+                "Item at index " + i + " should have the sellIn as " + expectedItem.getSellIn()
+            );
+            assertEquals(
+                expectedItem.getQuality(), item.getQuality(),
+                "Item at index " + i + " should have the quality as " + expectedItem.getQuality()
+            );
         }
     }
 }
