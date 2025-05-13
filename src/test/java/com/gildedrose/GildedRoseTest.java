@@ -42,6 +42,42 @@ class GildedRoseTest {
     }
 
     @Test
+    public void testConjuredItemsBeforeOld() {
+        Item[] items = new Item[] {
+            new Item("Conjured Item 1", 5, 0),
+            new Item("Conjured Item 2", 7, 1),
+            new Item("Conjured Item 3", 1, 20),
+        };
+        Item[] expectedItems = new Item[] {
+            new Item("Conjured Item 1", 4, 0),
+            new Item("Conjured Item 2", 6, 0),
+            new Item("Conjured Item 3", 0, 18),
+        };
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
+        app.updateQuality();
+
+        assertItems(expectedItems, items);
+    }
+
+    @Test
+    public void testConjuredItemsAfterOld() {
+        Item[] items = new Item[] {
+            new Item("Conjured Item 1", 0, 0),
+            new Item("Conjured Item 2", 0, 10),
+            new Item("Conjured Item 3", -1, 20),
+        };
+        Item[] expectedItems = new Item[] {
+            new Item("Conjured Item 1", -1, 0),
+            new Item("Conjured Item 2", -1, 6),
+            new Item("Conjured Item 3", -2, 16),
+        };
+        GildedRose app = new GildedRose(new ItemUpdaterFactory(), items);
+        app.updateQuality();
+
+        assertItems(expectedItems, items);
+    }
+
+    @Test
     public void testBackstageItemsBeforeOld() {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 12, 0),

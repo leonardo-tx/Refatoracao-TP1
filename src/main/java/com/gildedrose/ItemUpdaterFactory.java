@@ -11,6 +11,9 @@ public class ItemUpdaterFactory {
         if (isLegendary(item)) {
             return new LegendaryUpdater();
         }
+        if (isConjured(item)) {
+            return new ConjuredUpdater();
+        }
         return switch (item.getName()) {
             case "Aged Brie" -> new AgedBrieUpdater();
             case "Backstage passes to a TAFKAL80ETC concert" -> new BackstagePassUpdater();
@@ -20,5 +23,9 @@ public class ItemUpdaterFactory {
 
     private boolean isLegendary(Item item) {
         return legendaryItems.contains(item.getName());
+    }
+
+    private boolean isConjured(Item item) {
+        return item.getName().startsWith("Conjured");
     }
 }
