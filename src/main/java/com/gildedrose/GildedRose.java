@@ -54,10 +54,11 @@ class GildedRose {
             return true;
         }
         int increment = 1;
-        if (item.sellIn < 11) {
+        int lastSellIn = item.sellIn + 1;
+        if (lastSellIn < 11) {
             increment += 1;
         }
-        if (item.sellIn < 6) {
+        if (lastSellIn < 6) {
             increment += 1;
         }
         item.quality = Math.min(item.quality + increment, 50);
